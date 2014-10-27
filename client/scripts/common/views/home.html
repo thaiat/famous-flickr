@@ -1,0 +1,91 @@
+<fa-view>
+    <!-- SCROLL VIEW-->
+    <fa-scroll-view id="scrollView" fa-options="{direction: 1, edgeGrip:1}" fa-pipe-from="vm.eventHandler">
+        <!-- HEADER -->
+        <fa-view>
+            <fa-modifier fa-size="[undefined, 150]" fa-translate="[0, vm.getToolbarTranslate()]">
+                <!-- MAIN PHOTO -->
+                <fa-modifier fa-align="[0.5,0]" fa-origin="[0.5,0]" fa-size="[vm.viewSize.width+vm.getOverpull(), 165+vm.getOverpull()]" fa-translate="[0, -15-vm.getOverpull()]" fa-opacity="1">
+                    <fa-surface class="full-height" fa-z-index="2" fa-pipe-to="vm.eventHandler">
+                        <div id="mainPhoto" class="full-height" ng-style="vm.getPhotoStyle(vm.photoMain)"></div>
+                    </fa-surface>
+                </fa-modifier>
+                <!-- PROFILE PICTURE AND TEXT  -->
+                <fa-modifier fa-translate="[0,-vm.getOverpull()/2]">
+                    <!-- PROFILE CIRCLE -->
+                    <fa-modifier fa-size="[80,80]" fa-align="[0.5,0]" fa-origin="[0.5,0]" fa-translate="[0,5]">
+                        <fa-surface class="circle full-height" fa-z-index="4" fa-pipe-to="vm.eventHandler">
+                            <div id="circleSvgContainer"></div>
+                        </fa-surface>
+                    </fa-modifier>
+                    
+                    <fa-modifier fa-size="[80,80]" fa-align="[0.5,0]" fa-origin="[0.5,0]" fa-translate="[0,5]">
+                        <fa-surface class="padding circle full-height" fa-z-index="4" fa-pipe-to="vm.eventHandler">
+                            <div class="circle full-height" ng-style="vm.getPhotoStyle(vm.photoProfile)"></div>
+                        </fa-surface>
+                    </fa-modifier>
+                    <fa-modifier fa-size="[undefined,30]" fa-align="[0.5,0]" fa-origin="[0.5,0]" fa-translate="[0,85]">
+                        <fa-surface class="white text-center text-small full-height" fa-z-index="4" fa-pipe-to="vm.eventHandler">
+                            <div>{{vm.userName}}</div>
+                        </fa-surface>
+                    </fa-modifier>
+                </fa-modifier>
+                <!-- HEADER TOOLBAR -->
+                <fa-modifier fa-size="[undefined, 40]" fa-align="[0,1]" fa-origin="[0,1]" fa-translate=[0,0,10]>
+                    <fa-modifier fa-opacity="0.6">
+                        <fa-surface fa-background-color="'black'"></fa-surface>
+                    </fa-modifier>
+                    <fa-grid-layout fa-options="{dimensions: [3,1]}">
+                        <fa-surface>
+                            <div class="text-center-40">Photo</div>
+                        </fa-surface>
+                        <fa-surface>
+                            <div class="text-center-40 border-bottom">Albums</div>
+                        </fa-surface>
+                        <fa-surface>
+                            <div class="text-center-40">Groups</div>
+                        </fa-surface>
+                    </fa-grid-layout>
+                </fa-modifier>
+            </fa-modifier>
+        </fa-view>
+        <!-- IMAGES GRID-->
+        <fa-view ng-repeat="row in vm.photos track by $index" fa-size="[undefined, vm.viewSize.width/3]" fa-index="$index">
+            <fa-modifier>
+                <fa-grid-layout fa-options="{dimensions :[3,1]}">
+                    <fa-modifier ng-repeat="photo in row" fa-size="[vm.viewSize.width/3, vm.viewSize.width/3]">
+                        <fa-surface fa-pipe-to="vm.eventHandler" fa-background-color="'black'" class="full-height">
+                            <div class="full-height photo{{$index}}">
+                                <div class="full-height" ng-style="vm.getPhotoStyle(photo)"></div>
+                            </div>
+                        </fa-surface>
+                    </fa-modifier>
+                </fa-grid-layout>
+            </fa-modifier>
+        </fa-view>
+    </fa-scroll-view>
+    <!-- FOOTER BAR-->
+    <fa-modifier fa-size="[undefined, 40]" fa-align="[0,1]" fa-origin="[0,1]">
+        <fa-modifier fa-opacity="0.6">
+            <fa-surface fa-background-color="'black'"></fa-surface>
+        </fa-modifier>
+        <!-- FOOTER BAR BUTTONS -->
+        <fa-grid-layout fa-options="{dimensions: [3,1]}">
+            <fa-surface>
+                <div class="text-center-40">
+                    <i class="fa fa-photo"></i>
+                </div>
+            </fa-surface>
+            <fa-surface>
+                <div class="text-center-50">
+                    <i class="fa fa-camera fa-2x"></i>
+                </div>
+            </fa-surface>
+            <fa-surface>
+                <div class="text-center-40">
+                    <i class="fa fa-user"></i>
+                </div>
+            </fa-surface>
+        </fa-grid-layout>
+    </fa-modifier>
+</fa-view>
