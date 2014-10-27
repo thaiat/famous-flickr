@@ -68,7 +68,7 @@ module.exports = function(app) {
             }
             vm.circle = new ProgressBar.Circle($window.document.getElementById('circleSvgContainer'), {
                 color: '#3498DB',
-                strokeWidth: 6,
+                strokeWidth: 4,
                 fill: '#FFFFFF'
             });
         };
