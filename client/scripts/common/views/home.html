@@ -3,28 +3,29 @@
     <fa-scroll-view id="scrollView" fa-options="{direction: 1, edgeGrip:1}" fa-pipe-from="vm.eventHandler">
         <!-- HEADER -->
         <fa-view>
-            <fa-modifier fa-size="[undefined, 150]" fa-translate="[0, vm.getToolbarTranslate()]">
+            <fa-modifier fa-size="[undefined, vm.headerHeight]" fa-translate="[0, vm.getToolbarTranslate()]">
+                <fa-surface></fa-surface>
                 <!-- MAIN PHOTO -->
-                <fa-modifier fa-align="[0.5,0]" fa-origin="[0.5,0]" fa-size="[vm.viewSize.width+vm.getOverpull(), 165+vm.getOverpull()]" fa-translate="[0, -15-vm.getOverpull()]" fa-opacity="1">
+                <fa-modifier fa-align="[0.5,0]" fa-origin="[0.5,0]" fa-size="[vm.viewSize.width+vm.getOverpull(), vm.headerHeight+15+vm.getOverpull()]" fa-translate="[0, -15-vm.getOverpull()]" fa-opacity="1">
                     <fa-surface class="full-height" fa-z-index="2" fa-pipe-to="vm.eventHandler">
                         <div id="mainPhoto" class="full-height" ng-style="vm.getPhotoStyle(vm.photoMain)"></div>
                     </fa-surface>
                 </fa-modifier>
                 <!-- PROFILE PICTURE AND TEXT  -->
-                <fa-modifier fa-translate="[0,-vm.getOverpull()/2]">
+                <fa-modifier fa-align="[0.5,0.5]" fa-origin="[0.5,0.5]" fa-size="[200,110]" fa-translate="[0,-20-vm.getOverpull()/2]">
                     <!-- PROFILE CIRCLE -->
-                    <fa-modifier fa-size="[80,80]" fa-align="[0.5,0]" fa-origin="[0.5,0]" fa-translate="[0,5]">
+                    <fa-modifier fa-size="[90,90]" fa-align="[0.5,0]" fa-origin="[0.5,0]" fa-translate="[0, -5]">
                         <fa-surface class="circle full-height" fa-z-index="4" fa-pipe-to="vm.eventHandler">
                             <div id="circleSvgContainer"></div>
                         </fa-surface>
                     </fa-modifier>
-                    
-                    <fa-modifier fa-size="[80,80]" fa-align="[0.5,0]" fa-origin="[0.5,0]" fa-translate="[0,5]">
-                        <fa-surface class="padding circle full-height" fa-z-index="4" fa-pipe-to="vm.eventHandler">
-                            <div class="circle full-height" ng-style="vm.getPhotoStyle(vm.photoProfile)"></div>
+                    <fa-modifier fa-size="[80,80]" fa-align="[0.5,0]" fa-origin="[0.5,0]">
+                        <fa-surface class="full-height" fa-z-index="4" fa-pipe-to="vm.eventHandler">
+                            <div class="circle full-height" ng-style="vm.getPhotoStyle(vm.photoProfile)">
+                            </div>
                         </fa-surface>
                     </fa-modifier>
-                    <fa-modifier fa-size="[undefined,30]" fa-align="[0.5,0]" fa-origin="[0.5,0]" fa-translate="[0,85]">
+                    <fa-modifier fa-size="[undefined,20]" fa-align="[0.5,1]" fa-origin="[0.5,1]">
                         <fa-surface class="white text-center text-small full-height" fa-z-index="4" fa-pipe-to="vm.eventHandler">
                             <div>{{vm.userName}}</div>
                         </fa-surface>
@@ -87,5 +88,6 @@
                 </div>
             </fa-surface>
         </fa-grid-layout>
+
     </fa-modifier>
 </fa-view>

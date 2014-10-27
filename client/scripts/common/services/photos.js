@@ -2,7 +2,6 @@
 var servicename = 'photos';
 var _ = require('lodash');
 var randomstring = require('randomstring');
-
 module.exports = function(app) {
 
     var dependencies = [];
@@ -38,7 +37,6 @@ module.exports = function(app) {
             generate: generate,
             getStyle: getStyle
         };
-
     }
     service.$inject = dependencies;
     app.factory(app.name + '.' + servicename, service);

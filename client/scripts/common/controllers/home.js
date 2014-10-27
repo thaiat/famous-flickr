@@ -1,6 +1,5 @@
 'use strict';
 var controllername = 'home';
-
 var ProgressBar = require('progressbar.js');
 
 module.exports = function(app) {
@@ -14,11 +13,11 @@ module.exports = function(app) {
             width: $window.innerWidth,
             height: $window.innerHeight
         };
-
+        vm.headerHeight = 200;
         vm.userName = 'John Doe';
 
         vm.photos = photos.generate(2 * vm.viewSize.width / 3, 2 * vm.viewSize.width / 3, 30, 3);
-        vm.photoMain = photos.generate(vm.viewSize.width * 2, 150 * 2)[0][0];
+        vm.photoMain = photos.generate(vm.viewSize.width * 2, vm.headerHeight * 2)[0][0];
         vm.photoProfile = photos.generate(100, 100)[0][0];
 
         vm.getPhotoStyle = photos.getStyle;
@@ -42,7 +41,7 @@ module.exports = function(app) {
 
         vm.getToolbarTranslate = function() {
             var pos = getScrollView().getAbsolutePosition();
-            return pos > 110 ? pos - 110 : 0;
+            return pos > (vm.headerHeight - 60) ? pos - (vm.headerHeight - 60) : 0;
         };
 
         var Timer = $famous['famous/utilities/Timer'];
@@ -52,8 +51,9 @@ module.exports = function(app) {
                 vm.mainPhoto.setProperties({
                     webkitFilter: getBlur(pos)
                 });
+                fillCircle(Math.min(1, pos / 250));
             }
-            fillCircle(Math.min(1, pos / 250));
+
         }, 1);
 
         function getBlur(pos) {
@@ -68,7 +68,8 @@ module.exports = function(app) {
             }
             vm.circle = new ProgressBar.Circle($window.document.getElementById('circleSvgContainer'), {
                 color: '#3498DB',
-                strokeWidth: 10
+                strokeWidth: 6,
+                fill: '#FFFFFF'
             });
         };
     }
