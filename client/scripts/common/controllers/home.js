@@ -17,7 +17,8 @@ module.exports = function(app) {
         vm.userName = 'John Doe';
 
         vm.photos = photos.generate(2 * vm.viewSize.width / 3, 2 * vm.viewSize.width / 3, 30, 3);
-        vm.photoMain = photos.generate(vm.viewSize.width * 2, vm.headerHeight * 2)[0][0];
+        vm.photoMain = 'images/background_image.jpg'; //photos.generate(vm.viewSize.width * 2, vm.headerHeight * 2)[0][0];
+        vm.photoMainBlurred = 'images/background_image_blurred.jpg';
         vm.photoProfile = photos.generate(100, 100)[0][0];
 
         vm.getPhotoStyle = photos.getStyle;
@@ -47,19 +48,29 @@ module.exports = function(app) {
         var Timer = $famous['famous/utilities/Timer'];
         Timer.every(function() {
             var pos = vm.getOverpull();
-            if(getMainPhoto()) {
-                vm.mainPhoto.setProperties({
-                    webkitFilter: getBlur(pos)
-                });
-                fillCircle(Math.min(1, pos / 250));
-            }
-
-        }, 1);
+            // rever the comments to blur with css
+            //             if(getMainPhoto()) {
+            //                 vm.mainPhoto.setProperties({
+            //                     webkitFilter: 'blur(' + getBlur(pos) + 'px)'
+            //                 });
+            //             }
+            fillCircle(Math.min(1, pos / 250));
+        }, 2);
 
         function getBlur(pos) {
-            var blur = pos > 100 ? Math.min(Math.round((pos - 100) / 15), 10) : 0;
-            return 'blur(' + blur + 'px)';
+            var distance = 50;
+            var blur = pos > distance ? Math.min(Math.round((pos - distance) / 15), 10) : 0;
+            return blur;
         }
+
+        vm.getOpacityBlur = function() {
+            var pos = vm.getOverpull();
+
+            var blur = getBlur(pos);
+            var opacity = Math.min(blur / 10, 1);
+
+            return opacity;
+        };
 
         var fillCircle = function(value) {
             if(vm.circle) {
