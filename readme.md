@@ -8,7 +8,9 @@ run `npm install && bower install` to install all the dependencies.
 run `gulp browsersync` to run a browser-sync server.
 
 ## Usage
-The repo comes with the app ready to work. You can open client/index.html in your browser and emulate mobile.
+The repo comes with the app ready to work. 
+
+To test the application, you can open http://github.com/thaiat/famous-flickr/client/index.html in your browser and emulate mobile.
 
 You should be able to scroll up and down and see the top background image stretch and blur.
 
