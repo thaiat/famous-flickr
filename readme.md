@@ -1,6 +1,10 @@
 ## Description
 An hybrid mobile using `famous-angular` reproducing the native flickr animation visible in this video: http://video.capptivate.co/videos/FlickrPTR/FlickrPTR.hyperesources/FlickrPTR.mov
 
+
+See it in action here:   
+[![Building a native like interface with Famous](http://img.youtube.com/vi/L56RnM6VI-w/0.jpg)](http://www.youtube.com/watch?v=L56RnM6VI-w)
+
 ## Installation
 run `npm install && bower install` to install all the dependencies.
 
